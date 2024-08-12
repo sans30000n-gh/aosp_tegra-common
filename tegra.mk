@@ -23,9 +23,8 @@ TARGET_TEGRA_OMX      ?= $(TARGET_TEGRA_DEFAULT_BRANCH)
 TARGET_TEGRA_PHS      ?= $(TARGET_TEGRA_DEFAULT_BRANCH)
 TARGET_TEGRA_TOS      ?= $(if $(TARGET_TEGRA_KEYSTORE),$(TARGET_TEGRA_KEYSTORE),$(TARGET_TEGRA_DEFAULT_BRANCH))
 
-TARGET_TEGRA_CEC      ?= lineage
 TARGET_TEGRA_HEALTH   ?= aosp
-TARGET_TEGRA_MEMTRACK ?= lineage
+TARGET_TEGRA_MEMTRACK ?= aosp
 TARGET_TEGRA_POWER    ?= aosp
 
 ifeq ($(TARGET_TEGRA_MAN_LVL),)
@@ -149,25 +148,6 @@ else ifeq ($(TARGET_TEGRA_BOOTCTRL),efi)
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-impl.nvidia-efi \
     android.hardware.boot@1.0-impl.nvidia-efi.recovery
-endif
-endif
-
-# CEC
-ifneq ($(TARGET_TEGRA_CEC),)
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.hdmi.cec.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.hdmi.cec.xml
-
-ifeq ($(TARGET_TEGRA_CEC),lineage)
-PRODUCT_PACKAGES += \
-    android.hardware.tv.cec@1.0-service.nvidia
-else ifeq ($(TARGET_TEGRA_CEC),aosp)
-PRODUCT_PACKAGES += \
-    android.hardware.tv.cec@1.0-service \
-    android.hardware.tv.cec@1.0-impl
-else
-PRODUCT_PACKAGES += \
-    android.hardware.tv.cec@1.0-service \
-    android.hardware.tv.cec@1.0-impl.nvidia
 endif
 endif
 
