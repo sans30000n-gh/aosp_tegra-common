@@ -42,11 +42,6 @@ ifneq ($(TARGET_TEGRA_BOOTCTRL),)
 DEVICE_MANIFEST_FILE += device/nvidia/tegra-common/manifests/boot.xml
 endif
 
-# CEC
-ifneq ($(filter-out lineage,$(TARGET_TEGRA_CEC)),)
-DEVICE_MANIFEST_FILE += device/nvidia/tegra-common/manifests/cec.xml
-endif
-
 # Graphics
 ifeq ($(TARGET_TEGRA_GPU),drm)
 BOARD_GPU_DRIVERS         ?= nouveau tegra
@@ -61,7 +56,7 @@ endif
 # HIDL
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
     device/nvidia/tegra-common/manifests/device_framework_matrix.xml \
-    vendor/lineage/config/device_framework_matrix.xml
+    vendor/aosp/config/device_framework_matrix.xml
 
 # Keystore
 ifneq ($(filter rel-shield-r, $(TARGET_TEGRA_TOS)),)
