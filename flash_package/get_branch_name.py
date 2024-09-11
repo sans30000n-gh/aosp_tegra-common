@@ -22,8 +22,5 @@ xml_tree = parse(manifest_file)
 collection = xml_tree.documentElement
 projects = collection.getElementsByTagName("default")
 
-for prj in projects:
-    if prj.getAttribute("remote") == "github":
-        ver = prj.getAttribute("revision").split('-')[1].split('.')
-        print("%s.%s" % (ver[0].zfill(2), ver[1].zfill(2)))
-        break
+ver = projects[0].getAttribute("revision").split('-')[1].split('.')
+print("%s.%s" % (ver[0].zfill(2), ver[1].zfill(2)))
